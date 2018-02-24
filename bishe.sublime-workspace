@@ -527,10 +527,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 384.0,
-		"last_filter": "",
+		"height": 299.0,
+		"last_filter": "insta",
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"packa",
 				"Package Control: Install Package"
@@ -580,6 +584,8 @@
 	],
 	"file_history":
 	[
+		"/Users/crainax/war3/Bishe/resource/test.py",
+		"/Users/crainax/war3/Bishe/.gitignore",
 		"/Users/crainax/war3/Xlimon/edit/ItemBase.j",
 		"/Users/crainax/war3/Xlimon/db/unit.ini",
 		"/Users/crainax/war3/Xlimon/异度1.00/war3map.w3u.ini",
@@ -705,9 +711,7 @@
 		"/Users/crainax/war3/Xlimon/api/YDTrigger/BJOptimization/General.h",
 		"/Users/crainax/war3/Xlimon/edit/DoublePackage.j",
 		"/Users/crainax/war3/Xlimon/edit/XTBase.j",
-		"/Users/crainax/war3/Xlimon/XYAPI/XYwebase.j",
-		"/Users/crainax/war3/Xlimon/XYAPI/XYweuihqwpjg.j",
-		"/G/War3/Model/DotA_v6_85Beta3c/lua/change_log/6.85.txt"
+		"/Users/crainax/war3/Xlimon/XYAPI/XYwebase.j"
 	],
 	"find":
 	{
@@ -725,6 +729,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"load"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -795,6 +800,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"igno",
+				".gitignore"
+			],
 			[
 				"itemshop",
 				"edit/ItemShop.j"
@@ -1302,10 +1311,6 @@
 			[
 				"allj",
 				"edit/AllJass.j"
-			],
-			[
-				"playsou",
-				"edit/AntiBJLeak/PlaySound.j"
 			]
 		],
 		"width": 0.0
@@ -1335,7 +1340,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 396.0,
 	"status_bar_visible": true,
 	"template_settings":
