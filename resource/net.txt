@@ -1,0 +1,12 @@
+https://kyfw.12306.cn/otn/resources/js/query/train_list.js?scriptVersion=1.0
+
+https://blog.csdn.net/u013243986/article/details/66972705
+
+https://kyfw.12306.cn/otn/leftTicket/init
+
+https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2018-04-14&leftTicketDTO.from_station=GZQ&leftTicketDTO.to_station=NNZ&purpose_codes=ADULT
+
+
+写:
+1.pip3 与 requests
+2.
