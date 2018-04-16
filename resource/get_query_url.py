@@ -6,10 +6,11 @@ requests.packages.urllib3.disable_warnings()
 
 # 城市名代码查询字典
 # key：城市名 value：城市代码
-from .stations import stations_dict
+from .ParseStation import get_station
+from .station import stations
 
 # 反转k，v形成新的字典
-code_dict = {v: k for k, v in stations_dict.items()}
+code_dict = {v: k for k, v in stations.items()}
 
 
 def get_query_url(text):
@@ -22,8 +23,8 @@ def get_query_url(text):
         date = args[1]
         from_station_name = args[2]
         to_station_name = args[3]
-        from_station = stations_dict[from_station_name]
-        to_station = stations_dict[to_station_name]
+        from_station = stations[from_station_name]
+        to_station = stations[to_station_name]
     except:
         date, from_station, to_station = '--', '--', '--'
         # 将城市名转换为城市代码
