@@ -6,6 +6,7 @@ https://kyfw.12306.cn/otn/leftTicket/init
 
 https://kyfw.12306.cn/otn/leftTicket/query?leftTicketDTO.train_date=2018-04-14&leftTicketDTO.from_station=GZQ&leftTicketDTO.to_station=NNZ&purpose_codes=ADULT
 
+https://www.bilibili.com/video/av12380578/
 
 写:
 1.pip3 与 requests
