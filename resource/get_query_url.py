@@ -6,8 +6,7 @@ requests.packages.urllib3.disable_warnings()
 
 # 城市名代码查询字典
 # key：城市名 value：城市代码
-from .ParseStation import get_station
-from .station import stations
+from resource.station import stations
 
 # 反转k，v形成新的字典
 code_dict = {v: k for k, v in stations.items()}
