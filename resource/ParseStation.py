@@ -22,3 +22,6 @@ def get_station():
     f.close()
     return
 
+
+if __name__ == '__main__':
+    get_station()
