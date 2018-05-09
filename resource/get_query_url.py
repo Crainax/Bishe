@@ -100,7 +100,7 @@ def query_train_info(url):
 
 
 if __name__ == '__main__':
-    url = get_query_url('cs 2018-06-01 北京 重庆')
+    url = get_query_url('cs 2018-05-23 北京 重庆')
     datas = query_train_info(url)
     for i in datas:
         print(i)

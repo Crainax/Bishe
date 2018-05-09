@@ -10,6 +10,8 @@ https://www.bilibili.com/video/av12380578/
 
 https://www.cnblogs.com/kaituorensheng/p/3287652.html
 
+https://www.jianshu.com/p/9a8f1dfcc6dc
+
 写:
 1.pip3 与 requests
 2.

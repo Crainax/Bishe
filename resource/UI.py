@@ -7,7 +7,7 @@ class spider:
         self.root = Tk()
         self.root.title("车票监控")
 
-        self.root.geometry('470x320')
+        self.root.geometry('470x600')
         # Top
         self.frm = Frame(self.root)
         Label(self.root, text="车票监控", font=('Arial', 15)).pack()
@@ -20,7 +20,7 @@ class spider:
         e1.insert(10, '武汉')
         e1.pack(side=RIGHT)
         Label(self.frm_LT, text='始发站', font=('Arial', 12)).pack(side=LEFT)
-        self.frm_LT.pack()
+        self.frm_LT.pack(pady=10)
 
         self.frm_LT2 = Frame(self.frm_L)
         self.destination = StringVar()
@@ -28,11 +28,52 @@ class spider:
         e2.insert(10, '北京')
         e2.pack(side=RIGHT)
         Label(self.frm_LT2, text='终点站', font=('Arial', 12)).pack(side=LEFT)
-        self.frm_LT2.pack()
+        self.frm_LT2.pack(pady=10)
+
+        self.frm_LT3 = Frame(self.frm_L)
+        self.year = StringVar()
+        e3 = Entry(self.frm_LT3, textvariable=self.year, width=4, font=('Verdana', 8))
+        e3.insert(10, '2018')
+        e3.pack(side=LEFT)
+        Label(self.frm_LT3, text='年', font=('Arial', 12)).pack(side=LEFT)
+        self.month = StringVar()
+        e4 = Entry(self.frm_LT3, textvariable=self.month, width=3, font=('Verdana', 8))
+        e4.insert(10, '05')
+        e4.pack(side=LEFT)
+        Label(self.frm_LT3, text='月', font=('Arial', 12)).pack(side=LEFT)
+        self.day = StringVar()
+        e4 = Entry(self.frm_LT3, textvariable=self.day, width=3, font=('Verdana', 8))
+        e4.insert(10, '23')
+        e4.pack(side=LEFT)
+        Label(self.frm_LT3, text='日', font=('Arial', 12)).pack(side=LEFT)
+        self.frm_LT3.pack(pady=10)
+
+        self.frm_LT4 = Frame(self.frm_L)
+        Button(self.frm_LT4, text="开始监控", command=self.monitor, width=8, height=1,
+               font=('宋体', 20)).pack(side=LEFT)
+        self.frm_LT4.pack(pady=20)
 
         self.frm_L.pack(side=LEFT)
 
+        self.frm_M = Frame(self.frm)
+        self.t_show = Text(self.frm_M, width=30, height=15, font=('Verdana', 12))
+        self.t_show.insert('1.0', '')
+        self.t_show.pack()
+
+        self.frm_M.pack(side=LEFT)
+
         self.frm.pack()
+
+    def monitor(self):
+        # str = self.year + '-' +
+        self.t_show.delete('1.0', '10.0')
+        self.t_show.insert('1.0', 'sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
+                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
+                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
+                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
+                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
+                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
+                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds')
 
 
 def main():
