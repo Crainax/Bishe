@@ -7,8 +7,32 @@ class spider:
         self.root = Tk()
         self.root.title("车票监控")
 
+        self.root.geometry('470x320')
+        # Top
         self.frm = Frame(self.root)
         Label(self.root, text="车票监控", font=('Arial', 15)).pack()
+
+        # Left
+        self.frm_L = Frame(self.frm)
+        self.frm_LT = Frame(self.frm_L)
+        self.start = StringVar()
+        e1 = Entry(self.frm_LT, textvariable=self.start, width=5, font=('Verdana', 15))
+        e1.insert(10, '武汉')
+        e1.pack(side=RIGHT)
+        Label(self.frm_LT, text='始发站', font=('Arial', 12)).pack(side=LEFT)
+        self.frm_LT.pack()
+
+        self.frm_LT2 = Frame(self.frm_L)
+        self.destination = StringVar()
+        e2 = Entry(self.frm_LT2, textvariable=self.destination, width=5, font=('Verdana', 15))
+        e2.insert(10, '北京')
+        e2.pack(side=RIGHT)
+        Label(self.frm_LT2, text='终点站', font=('Arial', 12)).pack(side=LEFT)
+        self.frm_LT2.pack()
+
+        self.frm_L.pack(side=LEFT)
+
+        self.frm.pack()
 
 
 def main():
