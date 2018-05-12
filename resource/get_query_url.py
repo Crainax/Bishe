@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import json
-
+import mysql.connector
 from resource.station import stations
 
 # 关闭https证书验证警告
@@ -11,9 +11,11 @@ requests.packages.urllib3.disable_warnings()
 # key：城市名 value：城市代码
 
 
-
 # 反转k，v形成新的字典
 code_dict = {v: k for k, v in stations.items()}
+
+conn = {}
+
 
 def get_query_url(text):
     '''
@@ -39,11 +41,11 @@ def get_query_url(text):
         'leftTicketDTO.to_station={}&'
         'purpose_codes=ADULT'
     ).format(date, from_station, to_station)
-    print(url)
 
     return url
 
-def query_train_info(url):
+
+def query_train_info(url, conn):
     '''
     查询火车票信息：
     返回 信息查询列表
@@ -86,9 +88,17 @@ def query_train_info(url):
             # 无座
             no_seat = data_list[26]or '--'
 
+            cursor = conn.cursor()
+            cursor.execute('insert into tickets (time,train_id, start_station, end_station, start_time, end_time, use_time,\
+             left_one, left_two, left_soft_sleep, left_hard_sleep, left_hard_sit, left_no_sit) values (Now(),\
+             %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)', [train_no, from_station_name, to_station_name, start_time
+            , arrive_time, time_fucked_up, first_class_seat, second_class_seat, soft_sleep, hard_sleep, hard_seat,
+                                                     no_seat])
+            conn.commit()
+            cursor.close()
+            # print(train_no)
             # 打印查询结果
-            info = ('车次:{}\n出发站:{}\n目的地:{}\n出发时间:{}\n到达时间:{}\n消耗时间:{}\n\
-座位情况：\n一等座：「{}」 \n二等座：「{}」\n软卧：「{}」\n硬卧：「{}」\n硬座：「{}」\n无座：「{}」\n\n'.format(
+            info = ('{}/车程:{}-{}/时间:{}-{},用时:{}/余票:一等座[{}],二等座[{}],软卧[{}],硬卧[{}]硬座[{}],无座[{}]'.format(
                 train_no, from_station_name, to_station_name, start_time, arrive_time, time_fucked_up, first_class_seat,
                 second_class_seat, soft_sleep, hard_sleep, hard_seat, no_seat))
 
@@ -100,7 +110,9 @@ def query_train_info(url):
 
 
 if __name__ == '__main__':
+    conn = mysql.connector.connect(user='root', password='', database='tickets', use_unicode=True)
     url = get_query_url('cs 2018-05-23 北京 重庆')
-    datas = query_train_info(url)
+    datas = query_train_info(url, conn)
     for i in datas:
         print(i)
+    conn.close()

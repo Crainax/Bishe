@@ -43,3 +43,10 @@ httpstatus: 200,
 messages: "",
 status: true
 }
+
+
+create table tickets (id varchar(20) primary key, name varchar(20))
+
+insert into tickets (time, train_id, start_station, end_station, start_time, end_time, use_time, left_one, left_two, left_soft_sleep, left_hard_sleep, left_hard_sit, left_no_sit) values (Now(),"K305","北京","南京","16:05","17:02","00:50","10","10","有","有","有","有")
+
+alter table tickets add column train_id varchar(20) not null after time;

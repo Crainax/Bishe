@@ -1,13 +1,21 @@
 from tkinter import *
+from resource.get_query_url import *
+import time
+import threading
 
 
 class spider:
 
+    boolean_monitor = False
+    integer_monitor = 0
+    conn = 0
+
     def __init__(self):
+
         self.root = Tk()
         self.root.title("车票监控")
 
-        self.root.geometry('470x600')
+        self.root.geometry('1200x360')
         # Top
         self.frm = Frame(self.root)
         Label(self.root, text="车票监控", font=('Arial', 15)).pack()
@@ -49,31 +57,61 @@ class spider:
         self.frm_LT3.pack(pady=10)
 
         self.frm_LT4 = Frame(self.frm_L)
-        Button(self.frm_LT4, text="开始监控", command=self.monitor, width=8, height=1,
+        self.btString = StringVar()
+        self.btString.set('开始监控')
+        Button(self.frm_LT4, textvariable=self.btString, command=self.monitor, width=8, height=1,
                font=('宋体', 20)).pack(side=LEFT)
         self.frm_LT4.pack(pady=20)
 
         self.frm_L.pack(side=LEFT)
 
-        self.frm_M = Frame(self.frm)
-        self.t_show = Text(self.frm_M, width=30, height=15, font=('Verdana', 12))
+        self.frm_R = Frame(self.frm)
+        self.frm_RT1 = Frame(self.frm_R)
+        self.t_show = Text(self.frm_RT1, width=100, height=15, font=('Verdana', 12))
         self.t_show.insert('1.0', '')
         self.t_show.pack()
+        self.frm_RT1.pack()
 
-        self.frm_M.pack(side=LEFT)
+        self.frm_RT2 = Frame(self.frm_R)
+        self.times = StringVar()
+        self.times.set('已监控0次')
+        self.l_times = Label(self.frm_RT2, textvariable=self.times, font=('Arial', 12)).pack()
+        self.frm_RT2.pack()
+
+        self.frm_R.pack(side=RIGHT)
 
         self.frm.pack()
 
+        self.thread_crawl = threading.Thread(target=self.loop_crawl, name='LoopThread')
+        self.thread_crawl.start()
+
+    def loop_crawl(self):
+        while True:
+            if self.boolean_monitor:
+                comd = 'cs ' + self.year.get() + '-' + self.month.get() + '-' + self.day.get() + " " + self.start.get() + " " \
+                       + self.destination.get()
+                url = get_query_url(comd)
+                results = query_train_info(url, self.conn)
+
+                self.integer_monitor = self.integer_monitor + 1
+                self.times.set('已监控' + str(self.integer_monitor) + '次')
+
+                self.t_show.delete(1.0, END)
+                self.t_show
+                for result in results:
+                    self.t_show.insert(1.0, result + '\n')
+            else:
+                pass
+            time.sleep(60)
+
     def monitor(self):
-        # str = self.year + '-' +
-        self.t_show.delete('1.0', '10.0')
-        self.t_show.insert('1.0', 'sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
-                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
-                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
-                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
-                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
-                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds\
-                                  sdlfjkslsdjflsajflsdakfjsdalfjsdlfksdafsdfsdfsdfsdfsdfsdfsdffsds')
+        self.boolean_monitor = not self.boolean_monitor
+        if self.boolean_monitor:
+            self.conn = mysql.connector.connect(user='root', password='', database='tickets', use_unicode=True)
+            self.btString.set('停止监控')
+        else:
+            self.conn.close()
+            self.btString.set('开始监控')
 
 
 def main():
